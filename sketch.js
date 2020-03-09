@@ -1,29 +1,46 @@
-var ball;
+var box,database;
+var position;
 
 function setup(){
-    createCanvas(500,500);
-    ball = createSprite(250,250,10,10);
-    ball.shapeColor = "red";
+    database = firebase.database();
+    createCanvas(400,400);
+    box = createSprite(200,200,10,10);
+    box.shapeColor = "red";
+
+    var boxpos = database.ref('ball/position');
+    boxpos.on("value",readP,showERROR);
 }
 
 function draw(){
     background("white");
     if(keyDown(LEFT_ARROW)){
-        changePosition(-1,0);
+        Wposition(-3,0);
     }
     else if(keyDown(RIGHT_ARROW)){
-        changePosition(1,0);
+        Wposition(3,0);
     }
     else if(keyDown(UP_ARROW)){
-        changePosition(0,-1);
+        Wposition(0,-3);
     }
     else if(keyDown(DOWN_ARROW)){
-        changePosition(0,+1);
+        Wposition(0,+3);
     }
     drawSprites();
 }
 
-function changePosition(x,y){
-    ball.x = ball.x + x;
-    ball.y = ball.y + y;
+function Wposition(x,y){
+database.ref('ball/position').set({
+'x':position.x+x, 
+'y':position.y+y   
+})    
+}
+function readP(data){
+position = data.val();
+box.x = position.x;
+box.y = position.y;
+}
+function showERROR(){
+    console.log("dammit");
+
+
 }
