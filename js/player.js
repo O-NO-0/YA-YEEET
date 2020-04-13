@@ -15,10 +15,11 @@ database.ref('/').update({
 playerCount:count    
 })
 }
-update(name){
-var playerIndex ="player"+playerCount
+update(){
+var playerIndex ="players/player"+this.index;
 database.ref(playerIndex).set({
-name:name    
+name:this.name,
+distance:this.distance    
 })
  
 }

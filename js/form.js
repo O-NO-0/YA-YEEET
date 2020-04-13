@@ -4,6 +4,7 @@ this.input = createInput("name");
 this.button = createButton('START...');
 this.title = createElement('h5')
 this.greeting = createElement('h2');
+this.button2 = createButton('reset');
 }
 hide(){
  this.input.hide();
@@ -20,7 +21,9 @@ this.title.position(displayWidth/2 - 80,0);
 
 
 this.input.position(displayWidth/2 - 70,displayHeight/2 - 40);
-this.button.position(displayWidth/2 - 130,displayHeight/2 - 40);
+this.button.position(displayWidth/2 - 140,displayHeight/2 - 40);
+this.button2.position(displayWidth/2 - 12.5 ,40 );
+    
 this.button.mousePressed(()=>{
 this.input.hide();
 this.button.hide();
@@ -35,9 +38,16 @@ this.greeting.html("STOP H--,on nothing ok,nothing"+player.name)
 this.greeting.position(displayWidth/2 - 140,displayHeight/2 - 40);
 })
 
+this.button2.mousePressed(()=>{
+game.update(0);
+player.updateCount(0);    
+
+    
+    
+   
+    })
 
 }
-
 
 
 
